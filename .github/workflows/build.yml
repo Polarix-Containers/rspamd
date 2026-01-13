@@ -14,7 +14,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: polarix-containers/tmail-flutter
+  IMAGE_NAME: polarix-containers/rspamd
   TAG: latest
 
 jobs:
