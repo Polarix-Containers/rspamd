@@ -71,10 +71,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Extract version for tags
-        run: |
-          echo "TAG=$(grep -oP -m 1 '(?<=VERSION=).*' Dockerfile)" >> $GITHUB_ENV
-
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -102,10 +98,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
-      - name: Extract version for tags
-        run: |
-          echo "TAG=$(grep -oP -m 1 '(?<=VERSION=).*' Dockerfile)" >> $GITHUB_ENV
 
       - name: Run Grype vulnerability scanner
         uses: anchore/scan-action@v7
