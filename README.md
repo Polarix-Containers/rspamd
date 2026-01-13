@@ -1,0 +1,1 @@
+fasttext_model is under CC-BY-SA
