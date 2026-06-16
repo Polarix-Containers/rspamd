@@ -2,8 +2,8 @@ FROM alpine:latest
 
 LABEL maintainer="Thien Tran contact@tommytran.io"
 
-ENV	RSPAMD_LOCAL_ADDR=*
-ENV	RSPAMD_LOG_TYPE=console
+ENV RSPAMD_LOCAL_ADDR=*
+ENV RSPAMD_LOG_TYPE=console
 ENV CONFDIR=/usr/share/rspamd/config
 
 RUN apk -U upgrade \
@@ -16,11 +16,11 @@ ADD https://github.com/rspamd/rspamd-docker/raw/refs/heads/main/lid.176.ftz /usr
 COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
 ENV LD_PRELOAD="/usr/local/lib/libhardened_malloc.so"
 
-USER	11333:11333
+USER 11333:11333
 
 VOLUME [ "/var/lib/rspamd" ]
 # https://www.rspamd.com/doc/workers
 # 11332 proxy ; 11333 normal ; 11334 controller
-EXPOSE  11332 11333 11334
+EXPOSE 11332 11333 11334
 
-CMD [ "/usr/bin/rspamd", "--var=CONFDIR=${CONFDIR}", "-c", "/usr/share/rspamd/config/rspamd.conf", "-f" ]
+CMD /usr/bin/rspamd --var=CONFDIR="$CONFDIR" --config "$CONFDIR/rspamd.conf" --no-fork
