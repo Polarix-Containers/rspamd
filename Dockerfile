@@ -2,6 +2,9 @@ FROM alpine:latest
 
 LABEL maintainer="Thien Tran contact@tommytran.io"
 
+ENV	RSPAMD_LOCAL_ADDR=*
+ENV	RSPAMD_LOG_TYPE=console
+
 RUN apk -U upgrade \
     && apk add libstdc++ rspamd \
     && rm -rf /var/cache/apk/*
