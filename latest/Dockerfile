@@ -4,9 +4,11 @@ LABEL maintainer="Thien Tran contact@tommytran.io"
 
 ENV	RSPAMD_LOCAL_ADDR=*
 ENV	RSPAMD_LOG_TYPE=console
+ENV RSPAMD_CONFDIR=/usr/share/rspamd/config
 
 RUN apk -U upgrade \
     && apk add libstdc++ rspamd \
+    && mv /etc/rspamd /usr/share/rspamd/config \
     && rm -rf /var/cache/apk/*
 
 ADD https://github.com/rspamd/rspamd-docker/raw/refs/heads/main/lid.176.ftz /usr/share/rspamd/languages/fasttext_model.ftz
