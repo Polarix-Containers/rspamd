@@ -24,4 +24,4 @@ VOLUME [ "/var/lib/rspamd" ]
 # 11332 proxy ; 11333 normal ; 11334 controller
 EXPOSE  11332 11333 11334
 
-CMD [ "/usr/bin/rspamd", "--var=CONFDIR=${CONFDIR}" "-c", "/usr/share/rspamd/config/rspamd.conf", "-f" ]
+CMD [ "/usr/bin/rspamd", "--var=CONFDIR=${CONFDIR}", "-c", "/usr/share/rspamd/config/rspamd.conf", "-f" ]
