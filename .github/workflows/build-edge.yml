@@ -1,13 +1,13 @@
-name: Build
+name: Build Edge
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-    # Ignore Markdown files
-    paths-ignore:
-      - '**.md'
+    paths:
+      - '.github/workflows/build-edge.yml'
+      - 'edge/**'
   schedule:
     # Build the image daily
     - cron: '15 0 * * *'
@@ -15,7 +15,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: polarix-containers/rspamd
-  TAG: latest
+  TAG: edge
 
 jobs:
   build:
@@ -53,7 +53,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v7
         with:
-          context: .
+          context: ${{ env.TAG }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
